@@ -10,6 +10,10 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSpenserCai%2FGoWxDump.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSpenserCai%2FGoWxDump?ref=badge_shield)
 [![Discord](https://discordapp.com/api/guilds/1082909442481344572/widget.png?style=shield)](https://discord.gg/KCftHHM2xk)
 
+
+## 版本
+支持到3.9.5，[获取基址的方法](https://github.com/AdminTest0/SharpWxDump/blob/master/CE%E8%8E%B7%E5%8F%96%E5%9F%BA%E5%9D%80.md)
+
 ## 特别说明
 GoWxDump是<a href="https://github.com/AdminTest0/SharpWxDump">SharpWxDump</a>的Go语言版本。
 同时添加了一些新的功能。
