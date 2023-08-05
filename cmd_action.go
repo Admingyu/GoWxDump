@@ -33,8 +33,13 @@ func GetWeChatInfo() error {
 	// 获取微信密钥
 	key, err := GetWeChatKey(WeChatDataObject.WeChatHandle, WeChatDataObject.WeChatWinModel.ModBaseAddr+uintptr(OffSetMap[version][4]))
 	if err != nil {
-		return err
+		fmt.Printf("err get wechat key:%v, wechat version:%v, try get wechat64 key", err, version)
+		key, err = GetWeChatKey64(WeChatDataObject.WeChatHandle, WeChatDataObject.WeChatWinModel.ModBaseAddr+uintptr(OffSetMap[version][4]))
+		if err != nil {
+			return err
+		}
 	}
+
 	// 设置微信数据
 	WeChatDataObject.Version = version
 	WeChatDataObject.NickName = nickName

@@ -120,6 +120,26 @@ func GetWeChatKey(process windows.Handle, offset uintptr) (string, error) {
 
 }
 
+// 支持64位版本微信// from https://github.com/SpenserCai/GoWxDump/issues/26
+func GetWeChatKey64(process windows.Handle, offset uintptr) (string, error) {
+	var buffer = make([]byte, 8)
+	err := windows.ReadProcessMemory(process, offset, &buffer[0], 8, nil)
+	if err != nil {
+		return "", err
+	}
+	var num = 32
+	var buffer2 = make([]byte, num)
+	offset2 := uintptr((uint64(buffer[7]) << 56) + (uint64(buffer[6]) << 48) + (uint64(buffer[5]) << 40) + (uint64(buffer[4]) << 32) + (uint64(buffer[3]) << 24) + (uint64(buffer[2]) << 16) + (uint64(buffer[1]) << 8) + (uint64(buffer[0]) << 0))
+	err = windows.ReadProcessMemory(process, offset2, &buffer2[0], uintptr(num), nil)
+	if err != nil {
+		return "", err
+	}
+	// 将byte数组转成hex字符串，并转成大写
+	key := hex.EncodeToString(buffer2)
+	key = strings.ToUpper(key)
+	return key, nil
+}
+
 func GetWeChatFromRegistry() (string, error) {
 	// 打开注册表的微信路径：HKEY_CURRENT_USER\Software\Tencent\WeChat\FileSavePath
 	key, err := registry.OpenKey(registry.CURRENT_USER, `Software\Tencent\WeChat`, registry.QUERY_VALUE)

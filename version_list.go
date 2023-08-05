@@ -289,4 +289,12 @@ var OffSetMap = map[string][]int{
 		38986104,
 		50329932,
 	},
+	//  增加新版本 3.9.5.81 2023/6/13当前最新64位版
+	"3.9.5.81": {
+		0x3ACB650, // nick
+		0x3ACB7B8, // account
+		0x3ACB6F8, // mobile
+		38986104,
+		0x3ACBCB0, // key
+	},
 }
